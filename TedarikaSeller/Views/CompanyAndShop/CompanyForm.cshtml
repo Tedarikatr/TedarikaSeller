@@ -1,0 +1,42 @@
+﻿@model TedarikaSeller.Models.CompanyFormModel
+
+<h2>Şirket Bilgileri</h2>
+
+<form asp-action="CompanyForm" method="post">
+    <div>
+        <label for="CompanyName">Şirket Adı:</label>
+        <input asp-for="CompanyName" />
+        <span asp-validation-for="CompanyName"></span>
+    </div>
+    <div>
+        <label for="TaxNumber">Vergi Numarası:</label>
+        <input asp-for="TaxNumber" />
+        <span asp-validation-for="TaxNumber"></span>
+    </div>
+    <div>
+        <label for="TaxOffice">Vergi Dairesi:</label>
+        <input asp-for="TaxOffice" />
+        <span asp-validation-for="TaxOffice"></span>
+    </div>
+    <div>
+        <label for="City">Şehir:</label>
+        <input asp-for="City" />
+        <span asp-validation-for="City"></span>
+    </div>
+    <div>
+        <label for="Town">İlçe:</label>
+        <input asp-for="Town" />
+        <span asp-validation-for="Town"></span>
+    </div>
+    <div>
+        <label for="AddressDescription">Adres:</label>
+        <input asp-for="AddressDescription" />
+        <span asp-validation-for="AddressDescription"></span>
+    </div>
+    <div>
+        <label for="SectorName">Sektör:</label>
+        <input asp-for="SectorName" />
+        <span asp-validation-for="SectorName"></span>
+    </div>
+    <button type="submit">Şirketi Ekle</button>
+</form>

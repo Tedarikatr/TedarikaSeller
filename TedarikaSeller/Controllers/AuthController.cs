@@ -1,43 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TedarikaSeller.Models;
-using TedarikaSeller.Services;
+using TedarikaSeller.ServicesAbstract;
 
 namespace TedarikaSeller.Controllers
 {
-	public class AuthController : Controller
+    public class AuthController : Controller
 	{
-		private readonly AuthService _authService;
+		private readonly IAuthService _authService;
 
-		public AuthController(AuthService authService)
+		public AuthController(IAuthService authService)
 		{
 			_authService = authService;
 		}
 
-		public IActionResult Register()
-		{
-			return View(new AuthRegisterModel());
-		}
+        public IActionResult Register()
+        {
+            return View(new AuthRegisterModel());
+        }
 
-		[HttpPost]
-		public async Task<IActionResult> Register(AuthRegisterModel model)
-		{
-			if (!ModelState.IsValid)
-				return View(model);
+        [HttpPost]
+        public async Task<IActionResult> Register(AuthRegisterModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
 
-			var result = await _authService.RegisterAsync(model);
-			if (!result)
-			{
-				ModelState.AddModelError(string.Empty, "Registration failed");
-				return View(model);
-			}
+            var result = await _authService.RegisterAsync(model);
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "Registration failed");
+                return View(model);
+            }
 
-			return RedirectToAction("Login");
-		}
+            return RedirectToAction("Login");
+        }
 
-		public IActionResult Login()
-		{
-			return View(new AuthLoginModel());
-		}
+        public IActionResult Login()
+        {
+            return View(new AuthLoginModel());
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(AuthLoginModel model)

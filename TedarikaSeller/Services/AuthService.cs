@@ -1,15 +1,11 @@
-﻿// AuthService.cs
-using Microsoft.AspNetCore.Authentication.OAuth;
-using System.Net.Http;
-using System.Net.Http.Json;
+﻿using System.Text;
 using System.Text.Json;
-using System.Text;
-using System.Threading.Tasks;
 using TedarikaSeller.Models;
+using TedarikaSeller.ServicesAbstract;
 
 namespace TedarikaSeller.Services
 {
-	public class AuthService
+    public class AuthService : IAuthService
 	{
 		private readonly HttpClient _httpClient;
 
@@ -18,14 +14,14 @@ namespace TedarikaSeller.Services
 			_httpClient = httpClient;
 		}
 
-		public async Task<bool> RegisterAsync(AuthRegisterModel model)
-		{
-			var json = JsonSerializer.Serialize(model);
-			var content = new StringContent(json, Encoding.UTF8, "application/json");
+        public async Task<bool> RegisterAsync(AuthRegisterModel model)
+        {
+            var json = JsonSerializer.Serialize(model);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-			var response = await _httpClient.PostAsync("https://todayapi.azurewebsites.net/api/SellerUser/register", content);
-			return response.IsSuccessStatusCode;
-		}
+            var response = await _httpClient.PostAsync("https://todayapi.azurewebsites.net/api/SellerUser/register", content);
+            return response.IsSuccessStatusCode;
+        }
 
         public async Task<string> LoginAsync(AuthLoginModel model)
         {
@@ -51,9 +47,9 @@ namespace TedarikaSeller.Services
         }
     }
 
-	public class AuthTokenResponse
-	{
-		public string Token { get; set; }
-	}
+    public class AuthTokenResponse
+    {
+        public string Token { get; set; }
+    }
 }
 

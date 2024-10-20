@@ -1,0 +1,32 @@
+﻿@model TedarikaSeller.Models.ShopFormModel
+
+<h2>Mağaza Bilgileri</h2>
+
+<form asp-action="ShopForm" method="post">
+    <div>
+        <label for="ShopName">Mağaza Adı:</label>
+        <input asp-for="ShopName" />
+        <span asp-validation-for="ShopName"></span>
+    </div>
+    <div>
+        <label for="ShopPhone">Mağaza Telefonu:</label>
+        <input asp-for="ShopPhone" />
+        <span asp-validation-for="ShopPhone"></span>
+    </div>
+    <div>
+        <label for="ShopMail">Mağaza E-mail:</label>
+        <input asp-for="ShopMail" />
+        <span asp-validation-for="ShopMail"></span>
+    </div>
+    <div>
+        <label for="Description">Açıklama:</label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label for="ShopCategory">Kategori:</label>
+        <input asp-for="ShopCategory" />
+        <span asp-validation-for="ShopCategory"></span>
+    </div>
+    <button type="submit">Mağazayı Ekle</button>
+</form>

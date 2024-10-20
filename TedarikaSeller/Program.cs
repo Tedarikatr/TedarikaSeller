@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using TedarikaSeller.Services;
+using TedarikaSeller.ServicesAbstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +18,17 @@ builder.Services.AddSession(options =>
 builder.Services.AddDistributedMemoryCache();
 
 // Add HttpClient for AuthService
-builder.Services.AddHttpClient<AuthService>();
+//builder.Services.AddScoped<IAuthService, AuthService>();
+
+//builder.Services.AddScoped<ICompanyService, CompanyService>();
+//builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddHttpClient(); // Tüm HTTP istemci istekleri için genel ekleme
+
+// AuthService ve diðer HTTP kullanan servisler için HttpClient kullanýmý ekleniyor
+builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<ICompanyService, CompanyService>();
+builder.Services.AddHttpClient<IShopService, ShopService>();
+
 
 var app = builder.Build();
 
